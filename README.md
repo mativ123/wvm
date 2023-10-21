@@ -15,13 +15,13 @@ CLI11.hpp from [here](https://github.com/CLIUtils/CLI11)
 ## Installation
 Just download the prebuilt from the releases.
 
-### Requirements
+### build
+#### Requirements
 - curl
 - g++
 - gnu make
 - boost
 
-### build
 Simply clone the repo:
 ```
 $ git clone https://github.com/mativ123/wvm.git
