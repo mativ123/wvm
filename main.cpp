@@ -48,8 +48,7 @@ int InstallWine(std::string version) {
 }
 
 int main(int argc, char** argv) {
-    #ifdef NDEBUG
-    #else
+    #ifdef DEBUG
         std::cout << "This is a development build - dont release this\n\n";
     #endif
 

@@ -13,6 +13,8 @@ If you use any of the following distros consider downloading the the prebuilt bi
 CLI11.hpp from [here](https://github.com/CLIUtils/CLI11)
 
 ## Installation
+Just download the prebuilt from the releases.
+
 ### Requirements
 - curl
 - g++

@@ -1,5 +1,5 @@
 CFLAGS = -std=c++20 -O2
-CFLAGS_debug = -std=c++20 -Og -g
+CFLAGS_debug = -std=c++20 -Og -g -D DEBUG
 LDFLAGS = -lcurl -lboost_filesystem
 
 all: ./main
