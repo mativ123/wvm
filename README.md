@@ -10,11 +10,14 @@ If you use any of the following distros consider downloading the the prebuilt bi
 - mageia
 - ubuntu
 
+CLI11.hpp from [here](https://github.com/CLIUtils/CLI11)
+
 ## Installation
 ### Requirements
 - curl
 - g++
 - gnu make
+- boost
 
 ### build
 Simply clone the repo:  
@@ -23,6 +26,6 @@ and build:
 `$ make`
 
 ## Usage
-Simply use the `--install,-i` option followed by the version you want to install. wvm will automatically build.
+Simply use the `--install,-i` option followed by the version you want to install. wvm will automatically build wine.
   
 Use the `--help,-h` option for more information.

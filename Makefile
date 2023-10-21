@@ -1,6 +1,6 @@
 CFLAGS = -std=c++20 -O2
 CFLAGS_debug = -std=c++20 -Og -g
-LDFLAGS = -lcurl
+LDFLAGS = -lcurl -lboost_filesystem
 
 all: ./main
 debug: CFLAGS := $(CFLAGS_debug)

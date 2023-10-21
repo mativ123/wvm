@@ -5,7 +5,8 @@
 #include <stdio.h>
 #include <curl/curl.h>
 #include <cstdio>
-#include<unistd.h>
+#include <unistd.h>
+#include <boost/filesystem.hpp>
 
 size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
     size_t written = fwrite(ptr, size, nmemb, stream);
@@ -91,10 +92,11 @@ int main(int argc, char** argv) {
             std::cout << "Building wine for win32...\n";
         else
             std::cout << "Building wine for win64...\n";
+        std::system("mkdir build");
+        chdir("build");
         filename.replace(5 + version.length(), 8, "");
-        cmdTemplate.append(filename);
-        chdir(filename.c_str());
-        cmdTemplate = "./configure";
+        cmdTemplate = "../x/configure";
+        cmdTemplate.replace(3, 1, filename);
         if(!win32)
             cmdTemplate.append(" --enable-win64");
         std::system(cmdTemplate.c_str());
@@ -104,6 +106,8 @@ int main(int argc, char** argv) {
         else
             cmdTemplate.erase(5, 3);
         std::system(cmdTemplate.c_str());
+        filename.insert(0, "../");
+        boost::filesystem::remove_all(filename.c_str());
         std::cout << "Succesfully build wine\n";
     }
 
