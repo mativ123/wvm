@@ -59,6 +59,12 @@ int main(int argc, char** argv) {
     std::string version = "7.12";
     CLI::Option* installOpt { app.add_option("-i,--install", version, "Install specific version of wine") };
 
+    bool win32 { false };
+    app.add_flag("--32,-b", win32, "Built for windows 32. Default is windows 64");
+
+    int parallelism {};
+    app.add_option("-j", parallelism, "Amount of cores to run in parallel");
+
     CLI11_PARSE(app, argc, argv);
 
     std::cout << app.get_description() << "\n\n";
@@ -81,14 +87,23 @@ int main(int argc, char** argv) {
         std::remove(filename.c_str());
         std::cout << "Succesfully extracted files...\n";
 
-        std::cout << "Building wine...\n";
+        if(win32)
+            std::cout << "Building wine for win32...\n";
+        else
+            std::cout << "Building wine for win64...\n";
         filename.replace(5 + version.length(), 8, "");
         cmdTemplate.append(filename);
         chdir(filename.c_str());
-        std::system("ls");
         cmdTemplate = "./configure";
+        if(!win32)
+            cmdTemplate.append(" --enable-win64");
         std::system(cmdTemplate.c_str());
-        std::system("make");
+        cmdTemplate = "make -j";
+        if(parallelism > 0)
+            cmdTemplate.append(std::to_string(parallelism));
+        else
+            cmdTemplate.erase(5, 3);
+        std::system(cmdTemplate.c_str());
         std::cout << "Succesfully build wine\n";
     }
 
